@@ -1,4 +1,6 @@
-export const createUserValidation = {
+// USER VALIDATIONS
+
+export const createClient = {
 	name: {
 		isString: {
 			errorMessage: 'Name must be a string',
@@ -59,18 +61,31 @@ export const createUserValidation = {
 	},
 };
 
-export const authUserValidation = {
-	email: {
-		isEmail: {
-			errorMessage: 'Email must be a valid email',
-		},
-	},
-	password: {
+// RESERVATION VALIDATIONS
+
+export const createReservation = {
+	name: {
 		isString: {
-			errorMessage: 'Password must be a string',
+			errorMessage: 'Name must be a string',
 		},
 		notEmpty: {
-			errorMessage: 'Password must not be empty',
+			errorMessage: 'Name must not be empty',
+		},
+	},
+	price: {
+		isString: {
+			errorMessage: 'Price must be a string',
+		},
+		notEmpty: {
+			errorMessage: 'Price must not be empty',
+		},
+	},
+	date: {
+		isDate: {
+			errorMessage: 'Date must be a valid date',
+		},
+		notEmpty: {
+			errorMessage: 'Date must not be empty',
 		},
 	},
 };

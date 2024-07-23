@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
-
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegex = /^\d{9}$/;
 
-export const clientSchema = mongoose.Schema({
+const reservationClientSchema = mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
@@ -17,7 +16,6 @@ export const clientSchema = mongoose.Schema({
 	email: {
 		type: String,
 		required: true,
-		unique: true,
 		lowercase: true,
 		match: [emailRegex, 'Invalid email address'],
 		trim: true,
@@ -25,16 +23,31 @@ export const clientSchema = mongoose.Schema({
 	phoneNumber: {
 		type: String,
 		required: true,
-		unique: true,
 		match: [phoneRegex, 'Must contain exactly 9 digits'],
 	},
-	password: {
+});
+
+const reservationSchema = mongoose.Schema({
+	client: {
+		type: reservationClientSchema,
+		required: true,
+	},
+	name: {
 		type: String,
 		required: true,
 		trim: true,
 	},
+	price: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+	date: {
+		type: Date,
+		required: true,
+	},
 });
 
-const Client = mongoose.model('Client', clientSchema);
+const Reservation = mongoose.model('Reservation', reservationSchema);
 
-export default Client;
+export default Reservation;

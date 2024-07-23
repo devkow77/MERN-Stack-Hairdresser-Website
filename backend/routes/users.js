@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import { validationResult, matchedData, checkSchema } from 'express-validator';
-import { createUserValidation, authUserValidation } from '../middlewares/validations.js';
+import { createClient } from '../middlewares/validations.js';
 import Client from '../models/client.js';
-import { comparePassword, hashPassword } from '../utils/helpers.js';
+import { hashPassword } from '../utils/helpers.js';
+import passport from 'passport';
+import '../strategies/local.js';
 
 const router = Router();
 
-router.post('/create', checkSchema(createUserValidation), async (req, res) => {
+router.post('/create', checkSchema(createClient), async (req, res) => {
 	const result = validationResult(req);
 
 	if (!result.isEmpty()) {
@@ -43,31 +45,22 @@ router.post('/create', checkSchema(createUserValidation), async (req, res) => {
 	}
 });
 
-router.post('/auth', checkSchema(authUserValidation), async (req, res) => {
-	const result = validationResult(req);
-
-	if (!result.isEmpty()) {
-		return res.status(400).send(result.array());
-	}
-
-	const data = matchedData(req);
-
-	try {
-		const findClient = await Client.findOne({ email: data.email });
-
-		if (!findClient || !comparePassword(data.password, findClient.password)) {
-			return res.status(400).send({ msg: 'Client does not exist!' });
-		}
-
-		return res.status(200).send({ msg: 'Client logged in!', data: findClient });
-	} catch (err) {
-		return res.status(500).send({ msg: 'Cannot find client in database!', err });
-	}
+router.post('/auth', passport.authenticate('local'), (req, res) => {
+	return res.sendStatus(200);
 });
 
 router.get('/auth/status', (req, res) => {
-	console.log(req);
-	return req.user ? res.status(200).send(req.user) : res.status(404).send({ msg: 'Not authenticated user!' });
+	return req.user ? res.status(200).send(req.user) : res.status(404).send({ msg: 'Not authenticated client!' });
+});
+
+router.get('/logout', (req, res) => {
+	if (!req.user) {
+		return res.status(401).send({ msg: 'Client is not logged in!' });
+	}
+
+	res.clearCookie('connect.sid');
+
+	return res.status(200).send({ msg: 'Client has been logout!' });
 });
 
 export default router;
