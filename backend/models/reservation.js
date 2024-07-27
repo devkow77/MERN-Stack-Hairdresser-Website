@@ -30,7 +30,7 @@ const reservationClientSchema = mongoose.Schema({
 const reservationSchema = mongoose.Schema({
 	client: {
 		type: reservationClientSchema,
-		required: true,
+		// required: true,
 	},
 	name: {
 		type: String,
