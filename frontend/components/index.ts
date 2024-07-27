@@ -3,13 +3,6 @@ import Navbar from "./navbar";
 import MobileMenu from "./mobile-menu";
 import DesktopMenu from "./desktop-menu";
 import HamburgerBtn from "./hamburger-btn";
-import ServicesNavigation from "./services-navigation";
+import Services from "./services";
 
-export {
-  Container,
-  Navbar,
-  MobileMenu,
-  DesktopMenu,
-  HamburgerBtn,
-  ServicesNavigation,
-};
+export { Container, Navbar, MobileMenu, DesktopMenu, HamburgerBtn, Services };

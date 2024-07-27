@@ -38,20 +38,20 @@ const links: Links[] = [
     href: "/",
   },
   {
-    name: "Admin",
-    href: "/admin",
+    name: "My reservations",
+    href: "/profile/reservations",
   },
   {
-    name: "About",
-    href: "/about",
+    name: "Service List",
+    href: "/services",
+  },
+  {
+    name: "News",
+    href: "/news",
   },
   {
     name: "Contact",
     href: "/contact",
-  },
-  {
-    name: "Sign In",
-    href: "/signin",
   },
 ];
 
@@ -63,7 +63,7 @@ const MobileMenu = () => {
       animate="visible"
       className="fixed left-0 top-0 z-40 flex h-screen w-screen items-center justify-center bg-white"
     >
-      <div className="space-y-6">
+      <div className="space-y-6 text-slate-700">
         {links.map(({ name, href }: Links) => (
           <motion.a
             href={href}

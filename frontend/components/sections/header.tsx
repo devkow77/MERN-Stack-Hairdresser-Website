@@ -24,7 +24,9 @@ const Header = () => {
               <option>Warszawa</option>
             </select>
             <p className="opacity-80">
-              Currently +100 hairdresser in our service.
+              Currently +100 hairdresser in our service. <br /> Last time you
+              choose:{" "}
+              <span className="font-semibold text-blue-500">Rzeszów</span>
             </p>
             <button className="rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2 hover:from-blue-700 hover:to-purple-700">
               Search now

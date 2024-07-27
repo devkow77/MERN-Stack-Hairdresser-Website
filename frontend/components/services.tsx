@@ -34,21 +34,9 @@ const services: Services[] = [
     name: "Makeup",
     href: "/services/makeup",
   },
-  {
-    name: "Massage",
-    href: "/services/massage",
-  },
-  {
-    name: "Other",
-    href: "/services/other",
-  },
-  {
-    name: "More",
-    href: "/services/more",
-  },
 ];
 
-const ServicesNavigation = () => {
+const Services = () => {
   return (
     <section>
       <ul className="flex items-center justify-end gap-4">
@@ -65,4 +53,4 @@ const ServicesNavigation = () => {
   );
 };
 
-export default ServicesNavigation;
+export default Services;

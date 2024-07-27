@@ -1,9 +1,4 @@
-import {
-  Container,
-  DesktopMenu,
-  HamburgerBtn,
-  ServicesNavigation,
-} from "./index";
+import { Container, DesktopMenu, HamburgerBtn, Services } from "./index";
 import { useMediaQuery } from "usehooks-ts";
 
 const Navbar = () => {
@@ -16,7 +11,7 @@ const Navbar = () => {
           <h1 className="font-bold text-slate-700">Haier.com</h1>
           {desktop ? <DesktopMenu /> : <HamburgerBtn />}
         </div>
-        {desktop ? <ServicesNavigation /> : null}
+        {desktop ? <Services /> : null}
       </Container>
     </nav>
   );
